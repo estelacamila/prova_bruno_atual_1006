@@ -94,7 +94,7 @@ export default function Cadastro() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         style={{ flex: 1 }}
         keyboardVerticalOffset={60}>
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <TouchableWithoutFeedback >
           <ScrollView
             contentContainerStyle={{ flexGrow: 1}}
             keyboardShouldPersistTaps="handled">
