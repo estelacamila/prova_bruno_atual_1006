@@ -74,20 +74,28 @@ export default function atualizar() {
         }
   }, [confSenha])
 
-    async function Editar() {
-    try {
-      await api.patch("/usuario", {
-        email: email,
-        novaSenha: senha,
-      });
+   async function Editar() {
+  try {
+    await api.patch("/usuario", {
+      email: email,
+      novaSenha: senha,
+    });
 
-      router.replace("/");
-      Alert.alert('Deu certo!')
-    } catch (error) {
-      if (Platform.OS == "web") alert("senha ja cadastrado");
-      else Alert.alert("Ops...", "Usuario ja foi cadastrado");
+    alert("Informações atualizadas com sucesso.");
+    router.replace("/");
+  } catch (error: any) {
+    if (error?.response) {
+      const status = error.response.status;
+      if (status === 404) {
+        alert("Usuário não encontrado.");
+      } else {
+        alert( "Erro interno no servidor. Tente novamente mais tarde.");
+      }
+    } else {
+     alert("Não foi possível atualizar o perfil.");
     }
   }
+}
 
   return (
     <Tela>
